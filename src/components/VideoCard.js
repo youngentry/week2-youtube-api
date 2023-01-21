@@ -6,16 +6,15 @@ const VideoCard = ({ mockVideo }) => {
   return (
     <>
       <li className="video-card">
-        <img src="" alt="" />
-        이미지
+        <img src={`${mockVideo.snippet.thumbnails.medium.url}`} alt="" />
         <div className="info">
-          <div className="picture"> {mockVideo.picture}</div>
+          <div className="picture"> </div>
           <div className="text">
-            <p className="title">{mockVideo.title}</p>
-            <span className="name">{mockVideo.name}</span>
+            <p className="title">{mockVideo.snippet.title}</p>
+            <span className="name">{mockVideo.snippet.channelTitle}</span>
             <div className="other">
-              <div className="view">{mockVideo.view}</div>
-              <div className="date">{mockVideo.date}</div>
+              <div className="view">{mockVideo.snippet.view}</div>
+              <div className="date">{mockVideo.snippet.publishedAt}</div>
             </div>
           </div>
         </div>

@@ -4,6 +4,12 @@
   flex-direction: column;
   border-radius: 10px;
   font-size: 1.5rem;
+
+  img {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+  }
+
   .info {
     display: flex;
     padding: 1rem 0;
@@ -34,6 +40,13 @@
 @media (min-width: 0px) {
   .video-card {
     display: flex;
+    width: calc(100%);
+    background: rgb(245, 3, 16);
+  }
+}
+@media (min-width: 800px) {
+  .video-card {
+    display: flex;
     width: calc(100% / 2 - 5px);
     background: #ff0;
   }
@@ -52,11 +65,18 @@
     background: #00f;
   }
 }
-@media (min-width: 1800px) {
+@media (min-width: 1600px) {
   .video-card {
     display: flex;
     width: calc(100% / 5 - 10px);
     background: rgb(0, 255, 0);
+  }
+}
+@media (min-width: 1800px) {
+  .video-card {
+    display: flex;
+    width: calc(100% / 6 - 10px);
+    background: rgb(0, 204, 255);
   }
 }
 
