@@ -1,0 +1,14 @@
+.category-button {
+  padding: 1.5rem 1rem;
+  font-size: 1.5rem;
+  cursor: pointer;
+  &:hover {
+    background: #404040;
+  }
+  border-radius: 1rem;
+
+  .side-box {
+    display: flex;
+    gap: 2rem;
+  }
+}

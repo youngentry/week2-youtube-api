@@ -1,0 +1,11 @@
+@import "../abstracts/variables.scss";
+
+.nav-head {
+  position: sticky;
+  top: 0;
+  left: 0;
+  height: 60px;
+  width: 100%;
+  background: $main-color;
+  z-index: 999;
+}

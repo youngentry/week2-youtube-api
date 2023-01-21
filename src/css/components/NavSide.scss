@@ -1,0 +1,21 @@
+@import "../abstracts/variables.scss";
+
+.nav-side {
+  position: sticky;
+  top: 60px;
+  height: calc(100vh - 6rem);
+  min-width: 23rem;
+  font-weight: 100;
+  background: $side-dark;
+
+  .side-container {
+    padding: 1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+
+    strong {
+      display: inline-block;
+      font-size: 1.8rem;
+      padding: 1rem;
+    }
+  }
+}

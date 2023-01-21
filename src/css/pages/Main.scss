@@ -1,0 +1,13 @@
+.main {
+  position: relative;
+  width: 100%;
+
+  .video-list {
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    padding: 3rem;
+    width: 100%;
+    gap: 1rem;
+  }
+}

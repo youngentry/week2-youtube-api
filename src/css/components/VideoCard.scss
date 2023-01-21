@@ -1,0 +1,67 @@
+.video-card {
+  display: flex;
+  min-width: 230px;
+  flex-direction: column;
+  border-radius: 10px;
+  font-size: 1.5rem;
+  .info {
+    display: flex;
+    padding: 1rem 0;
+
+    .picture {
+      margin-right: 1rem;
+    }
+    .text {
+      display: flex;
+      flex-direction: column;
+      .title {
+        font-size: 2rem;
+        margin-bottom: 10px;
+      }
+      .name {
+        font-size: 1.3rem;
+        margin-bottom: 5px;
+      }
+
+      .other {
+        display: flex;
+        font-size: 1.3rem;
+      }
+    }
+  }
+}
+
+@media (min-width: 0px) {
+  .video-card {
+    display: flex;
+    width: calc(100% / 2 - 5px);
+    background: #ff0;
+  }
+}
+@media (min-width: 1000px) {
+  .video-card {
+    display: flex;
+    width: calc(100% / 3 - 7px);
+    background: #f0f;
+  }
+}
+@media (min-width: 1300px) {
+  .video-card {
+    display: flex;
+    width: calc(100% / 4 - 8px);
+    background: #00f;
+  }
+}
+@media (min-width: 1800px) {
+  .video-card {
+    display: flex;
+    width: calc(100% / 5 - 10px);
+    background: rgb(0, 255, 0);
+  }
+}
+
+// .video-card {
+//   display: flex;
+//   width: calc(100% / 4);
+//   background: #10103e;
+// }
