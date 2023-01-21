@@ -1493,7 +1493,7 @@ const mockData = [
 ];
 
 const Main = () => {
-  // const apiKey = "AIzaSyCgqThQwQoG8Rmexmh-3oZAKnxA8zckbig";
+  const apiKey = process.env.API_KEP;
   const [list, setList] = useState(mockData);
 
   console.log(list);
