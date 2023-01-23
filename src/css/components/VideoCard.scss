@@ -1,6 +1,7 @@
 .video-card {
   display: flex;
   min-width: 230px;
+  height: 100%;
   flex-direction: column;
   border-radius: 10px;
   font-size: 1.5rem;
@@ -19,18 +20,21 @@
     border-top-left-radius: 1rem;
     border-top-right-radius: 1rem;
     opacity: 0;
+    visibility: hidden;
+    cursor: pointer;
   }
 
   &:hover {
     z-index: 998;
     transform: scale(1.2);
     background: rgb(45, 45, 45);
-    transition: 0.3s;
-    transition-delay: 0.3s;
+    transition: 0.5s;
+    transition-delay: 0.5s;
     & iframe {
       opacity: 1;
-      transition: 0.3s;
-      transition-delay: 0.3s;
+      visibility: visible;
+      transition: 0.5s;
+      transition-delay: 0.5s;
     }
   }
   img {

@@ -8,6 +8,7 @@ import Dislike from "./pages/Dislike";
 import Subscribe from "./pages/Subscribe";
 import { Route, Router, Routes } from "react-router-dom";
 import BodyWrapper from "./layout/BodyWrapper";
+import { useEffect, useState } from "react";
 
 const mockData = [
   {
@@ -1499,17 +1500,29 @@ const mockData = [
 // redux로 mockData로 state에 저장하는 과정 이식하기
 
 function App() {
+  const [list, setList] = useState(mockData);
+  useEffect(() => {
+    const tempList = [...list];
+    [...tempList].forEach((data) => {
+      data.like = 0;
+      data.dislike = 0;
+      data.subscribe = 0;
+    });
+    setList(tempList);
+  }, []);
+  console.log(mockData, "mock");
+
   return (
     <div className="App">
       <NavHead />
       <BodyWrapper>
-        <NavSide />
+        <NavSide list={list} />
         <Routes>
-          <Route path="/" element={<Main mockData={mockData} />} />
-          <Route path="/video/:id" element={<Video mockData={mockData} />} />
-          <Route path="/subscribe" element={<Subscribe />} />
-          <Route path="/like" element={<Like />} />
-          <Route path="/dislike" element={<Dislike />} />
+          <Route path="/" element={<Main mockData={list} />} />
+          <Route path="/video/:id" element={<Video list={list} setList={setList} />} />
+          <Route path="/subscribe" element={<Subscribe mockData={list} />} />
+          <Route path="/like" element={<Like mockData={list} />} />
+          <Route path="/dislike" element={<Dislike mockData={list} />} />
         </Routes>
       </BodyWrapper>
     </div>

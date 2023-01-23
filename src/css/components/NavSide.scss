@@ -3,10 +3,11 @@
 .nav-side {
   position: sticky;
   top: 60px;
-  height: calc(100vh - 6rem);
+  left: 0;
+  height: calc(100vh - 60px);
   min-width: 23rem;
   font-weight: 100;
-  background: $side-dark;
+  background: $main-color;
 
   .side-container {
     padding: 1rem;

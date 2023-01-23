@@ -4,22 +4,13 @@ import { useNavigate } from "react-router";
 import "../css/components/VideoCard.scss";
 
 const VideoCard = ({ mockVideo }) => {
-  const [playVideo, setPlayVideo] = useState(false);
+  const [isPlayVideo, setIsPlayVideo] = useState(false);
   const navigate = useNavigate();
   return (
     <li onClick={() => navigate(`/video/${mockVideo.id}`, { state: { mockVideo } })} className="video-card">
-      <div className="thumbnailBox">
+      <div className="thumbnailBox" onMouseOver={() => setIsPlayVideo(true)} onMouseLeave={() => setIsPlayVideo(false)}>
         <img src={`${mockVideo.snippet.thumbnails.medium.url}`} alt="" />
-        <ReactPlayer
-          className="videoPlayer"
-          url={`https://www.youtube.com/embed/${mockVideo.id}&origin=http://localhost:3000/`}
-          muted={true}
-          playing={playVideo}
-          width="100%"
-          height="100%"
-          onMouseOver={() => setPlayVideo(true)}
-          onMouseLeave={() => setPlayVideo(false)}
-        />
+        <ReactPlayer className="videoPlayer" url={`https://www.youtube.com/embed/${mockVideo.id}&origin=http://localhost:3000/`} muted={true} playing={isPlayVideo} width="100%" height="100%" />
       </div>
       <div className="info">
         <div className="picture"> </div>

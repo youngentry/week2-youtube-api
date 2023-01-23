@@ -6,4 +6,16 @@
   color: #000;
   border: none;
   border-radius: 2rem;
+  cursor: pointer;
+
+  &:hover {
+    background: #bbbbbb;
+  }
+  &:active {
+    background: #6f6f6f;
+  }
+
+  &.highlighted {
+    background: rgb(75, 75, 75);
+  }
 }

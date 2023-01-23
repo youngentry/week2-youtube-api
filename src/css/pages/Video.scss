@@ -2,7 +2,7 @@
 
 .video {
   padding: 3rem;
-  width: 70%;
+  width: 60%;
   iframe {
     margin-bottom: 1rem;
   }
@@ -28,16 +28,11 @@
           margin-bottom: 1rem;
         }
       }
-      .subscribe {
-        margin-right: auto;
-        button {
-          @include activity-button;
-        }
-      }
       .activity {
         display: flex;
         font-size: 2rem;
         gap: 1rem;
+        .subscribe,
         .like,
         .dislike {
           display: flex;
