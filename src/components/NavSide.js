@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import "../css/components/NavSide.scss";
 import { addSubscribe, setSubscribe } from "../store/store";
 import CategoryButton from "./CategoryButton";
@@ -12,22 +13,8 @@ const categoryButtonName = [
 ];
 
 const NavSide = () => {
-  const popularVideo = useSelector((state) => state.popularVideo);
+  const channelBaseUrl = "https://www.youtube.com/channel/";
   const subscribeListSlice = useSelector((state) => state.subscribeListSlice);
-
-  const [subscribeList, setSubscribeList] = useState([
-    ...popularVideo.map((data) => {
-      return data.subscribe;
-    }),
-  ]);
-
-  useEffect(() => {
-    setSubscribeList([
-      ...popularVideo.filter((data) => {
-        return data.subscribe;
-      }),
-    ]);
-  }, []);
 
   useEffect(() => {
     console.log(subscribeListSlice);
@@ -43,8 +30,14 @@ const NavSide = () => {
       <div className="side-container">
         <strong>구독</strong>
         {subscribeListSlice.length ? (
-          subscribeListSlice.map((channel) => {
-            return <div className="subscribe-side-list">{channel}</div>;
+          subscribeListSlice.map((channel, index) => {
+            return (
+              <div key={index} className="subscribe-side-list">
+                <a href={`${channelBaseUrl}${channel.channelId}`} target="_blank">
+                  {channel.title}
+                </a>
+              </div>
+            );
           })
         ) : (
           <div className="subscribe-side-list">없음</div>

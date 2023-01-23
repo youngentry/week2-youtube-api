@@ -1505,28 +1505,13 @@ const apiKey = process.env.REACT_APP_API_KEY;
 function App() {
   const dispatch = useDispatch();
 
-  const popularData = [];
-
   useEffect(() => {
     axios
-      .get(`https://youtube.googleapis.com/youtube/v3/videos?part=snippet&chart=mostPopular&maxResults=25&key=${"AIzaSyCgqThQwQoG8Rmexmh-3oZAKnxA8zckbig"}`)
+      .get(`https://youtube.googleapis.com/youtube/v3/videos?part=snippet&chart=mostPopular&maxResults=25&key=${apiKey}`)
       .then((res) => {
-        console.log(res);
-        popularData.push(res.data.items);
+        dispatch(setPopularVideo([...res.data.items]));
       })
-      .catch((error) => console.log("error", error))
-      .then((res) => {
-        console.log(...popularData);
-
-        const tempList = [...popularData];
-        [...tempList].forEach((data) => {
-          data.like = 0;
-          data.dislike = 0;
-          data.subscribe = 0;
-        });
-        console.log(...tempList);
-        dispatch(setPopularVideo(...tempList));
-      });
+      .catch((error) => console.log("error", error));
   }, []);
 
   return (

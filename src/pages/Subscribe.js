@@ -1,16 +1,22 @@
 import React, { useEffect } from "react";
 import ReactPlayer from "react-player";
 import { useSelector } from "react-redux";
+import "../css/pages/Subscribe.scss";
 
 const Subscribe = () => {
-  const popularVideo = useSelector((state) => state.popularVideo);
+  const channelBaseUrl = "https://www.youtube.com/channel/";
+  const subscribeList = useSelector((state) => state.subscribeListSlice);
+
+  console.log(subscribeList);
   return (
-    <div>
-      <div>구독한 채널 목록</div>
-      {popularVideo.map((data, index) => {
-        return data.isSubscribed ? (
+    <div className="subscribe">
+      <h2>구독한 채널 목록</h2>
+      {subscribeList.map((subscribedChannel, index) => {
+        return subscribedChannel ? (
           <div key={index}>
-            <strong>{data.snippet.channelTitle}</strong>
+            <a href={`${channelBaseUrl}${subscribedChannel.channelId}`} target="_blank">
+              {subscribedChannel.title}
+            </a>
           </div>
         ) : (
           <div key={index}>{null}</div>

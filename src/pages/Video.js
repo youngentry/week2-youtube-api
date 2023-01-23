@@ -18,10 +18,16 @@ const Video = () => {
   const [isDislike, setIsDislike] = useState(popularVideo[tempListIndex].isDislike);
   const [isSubscribed, setIsSubscribed] = useState(popularVideo[tempListIndex].isSubscribed);
 
+  const subscribe = () => {
+    setIsSubscribed(!isSubscribed);
+    dispatch(addSubscribe({ title: mockVideo.snippet.channelTitle, channelId: mockVideo.snippet.channelId }));
+  };
+
   useEffect(() => {
     dispatch(setLike({ tempListIndex, isLike }));
     dispatch(setDislike({ tempListIndex, isDislike }));
     dispatch(setSubscribe({ tempListIndex, isSubscribed }));
+    console.log(mockVideo);
   }, [isSubscribed, isLike, isDislike]);
   return (
     <div className="video">
@@ -49,13 +55,7 @@ const Video = () => {
                 구독중
               </div>
             ) : (
-              <div
-                className={`subscribe`}
-                onClick={() => {
-                  setIsSubscribed(!isSubscribed);
-                  dispatch(addSubscribe(mockVideo.snippet.channelTitle));
-                }}
-              >
+              <div className={`subscribe`} onClick={() => subscribe()}>
                 구독
               </div>
             )}
