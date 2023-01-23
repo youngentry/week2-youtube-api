@@ -1,5 +1,50 @@
+@import "../abstracts/mixins.scss";
+
 .video {
-  ul {
-    display: none;
+  padding: 3rem;
+  width: 70%;
+  iframe {
+    margin-bottom: 1rem;
+  }
+  .info {
+    display: flex;
+    flex-direction: column;
+    .titleBox {
+      margin-bottom: 1rem;
+      .title {
+        font-size: 2.8rem;
+        font-weight: 500;
+      }
+    }
+
+    .infoBox {
+      display: flex;
+
+      .channelInfoBox {
+        margin-right: 2rem;
+        .name {
+          font-size: 2rem;
+          font-weight: 500;
+          margin-bottom: 1rem;
+        }
+      }
+      .subscribe {
+        margin-right: auto;
+        button {
+          @include activity-button;
+        }
+      }
+      .activity {
+        display: flex;
+        font-size: 2rem;
+        gap: 1rem;
+        .like,
+        .dislike {
+          display: flex;
+          align-items: center;
+          @include activity-button;
+        }
+      }
+    }
   }
 }

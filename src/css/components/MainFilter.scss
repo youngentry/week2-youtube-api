@@ -1,6 +1,7 @@
 .main-filter {
   display: flex;
   position: sticky;
+  z-index: 999;
   top: 59px;
   left: 0;
   margin: 10px 0;
