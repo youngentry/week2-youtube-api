@@ -1,18 +1,19 @@
 import React, { useEffect } from "react";
 import ReactPlayer from "react-player";
+import { useSelector } from "react-redux";
 
-const Subscribe = ({ mockData }) => {
-  console.log(mockData);
+const Subscribe = () => {
+  const popularVideo = useSelector((state) => state.popularVideo);
   return (
     <div>
       <div>구독한 채널 목록</div>
-      {mockData.map((data) => {
-        return data.subscribe ? (
-          <div>
+      {popularVideo.map((data, index) => {
+        return data.isSubscribed ? (
+          <div key={index}>
             <strong>{data.snippet.channelTitle}</strong>
           </div>
         ) : (
-          <div>{null}</div>
+          <div key={index}>{null}</div>
         );
       })}
     </div>

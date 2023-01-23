@@ -1,14 +1,16 @@
 import React, { useEffect } from "react";
 import ReactPlayer from "react-player";
+import { useSelector } from "react-redux";
 
-const Like = ({ mockData }) => {
-  console.log(mockData);
+const Like = () => {
+  const popularVideo = useSelector((state) => state.popularVideo);
+
   return (
     <div>
       <div>좋아요 표시한 동영상</div>
-      {mockData.map((data) => {
-        return data.like ? (
-          <div>
+      {popularVideo.map((data, index) => {
+        return data.isLike ? (
+          <div key={index}>
             <div>
               <ReactPlayer className="videoPlayer" url={`https://www.youtube.com/embed/${data.id}&origin=http://localhost:3000/`} muted={true} playing={false} width="100%" height="100%" />
             </div>
@@ -16,7 +18,7 @@ const Like = ({ mockData }) => {
             {data.snippet.title}
           </div>
         ) : (
-          <div>{null}</div>
+          <div key={index}>{null}</div>
         );
       })}
     </div>

@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import "../css/components/NavSide.scss";
+import { addSubscribe, setSubscribe } from "../store/store";
 import CategoryButton from "./CategoryButton";
 
 const categoryButtonName = [
@@ -9,35 +11,43 @@ const categoryButtonName = [
   { icon: "🤍", name: "구독", pathTo: "/subscribe" },
 ];
 
-const NavSide = ({ list }) => {
+const NavSide = () => {
+  const popularVideo = useSelector((state) => state.popularVideo);
+  const subscribeListSlice = useSelector((state) => state.subscribeListSlice);
+
   const [subscribeList, setSubscribeList] = useState([
-    ...list.filter((data) => {
+    ...popularVideo.map((data) => {
       return data.subscribe;
     }),
   ]);
 
   useEffect(() => {
     setSubscribeList([
-      ...list.filter((data) => {
+      ...popularVideo.filter((data) => {
         return data.subscribe;
       }),
     ]);
-  }, [list]);
+  }, []);
+
+  useEffect(() => {
+    console.log(subscribeListSlice);
+  }, [subscribeListSlice]);
+
   return (
     <div className="nav-side">
       <div className="side-container">
-        {categoryButtonName.map((button) => {
-          return <CategoryButton name={button.name} icon={button.icon} pathTo={button.pathTo} />;
+        {categoryButtonName.map((button, index) => {
+          return <CategoryButton key={index} name={button.name} icon={button.icon} pathTo={button.pathTo} />;
         })}
       </div>
       <div className="side-container">
         <strong>구독</strong>
-        {subscribeList.length ? (
-          subscribeList.map((channel) => {
-            return <div>{channel.snippet.channelTitle}</div>;
+        {subscribeListSlice.length ? (
+          subscribeListSlice.map((channel) => {
+            return <div className="subscribe-side-list">{channel}</div>;
           })
         ) : (
-          <div>없음</div>
+          <div className="subscribe-side-list">없음</div>
         )}
       </div>
     </div>

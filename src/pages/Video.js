@@ -1,26 +1,28 @@
 import React, { useEffect, useState } from "react";
 import ReactPlayer from "react-player";
+import { useDispatch, useSelector } from "react-redux";
 import { useLocation, useParams } from "react-router";
 import VideoCard from "../components/VideoCard";
 import "../css/pages/Video.scss";
+import { addSubscribe, setDislike, setLike, setPopularVideo, setSubscribe } from "../store/store";
 
-const Video = ({ list, setList }) => {
+const Video = () => {
+  const popularVideo = useSelector((state) => state.popularVideo);
+  const dispatch = useDispatch();
   const {
     state: { mockVideo },
   } = useLocation();
 
-  const tempListIndex = list.findIndex((data) => data.id === mockVideo.id);
-  const [isSubscribed, setIsSubscribed] = useState(list[tempListIndex].subscribe);
-  const [isLike, setIsLike] = useState(list[tempListIndex].like);
-  const [isDislike, setIsDislike] = useState(list[tempListIndex].dislike);
+  const tempListIndex = popularVideo.findIndex((data) => data.id === mockVideo.id);
+  const [isLike, setIsLike] = useState(popularVideo[tempListIndex].isLike);
+  const [isDislike, setIsDislike] = useState(popularVideo[tempListIndex].isDislike);
+  const [isSubscribed, setIsSubscribed] = useState(popularVideo[tempListIndex].isSubscribed);
 
   useEffect(() => {
-    list[tempListIndex].subscribe = isSubscribed;
-    list[tempListIndex].like = isLike;
-    list[tempListIndex].dislike = isDislike;
-    setList(list);
+    dispatch(setLike({ tempListIndex, isLike }));
+    dispatch(setDislike({ tempListIndex, isDislike }));
+    dispatch(setSubscribe({ tempListIndex, isSubscribed }));
   }, [isSubscribed, isLike, isDislike]);
-
   return (
     <div className="video">
       <ReactPlayer className="videoPlayer" url={`https://www.youtube.com/embed/${mockVideo.id}&origin=http://localhost:3000/`} muted={false} playing={true} width="100%" height="100%" />
@@ -51,6 +53,7 @@ const Video = ({ list, setList }) => {
                 className={`subscribe`}
                 onClick={() => {
                   setIsSubscribed(!isSubscribed);
+                  dispatch(addSubscribe(mockVideo.snippet.channelTitle));
                 }}
               >
                 구독

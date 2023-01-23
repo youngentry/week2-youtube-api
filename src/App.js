@@ -9,6 +9,9 @@ import Subscribe from "./pages/Subscribe";
 import { Route, Router, Routes } from "react-router-dom";
 import BodyWrapper from "./layout/BodyWrapper";
 import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { setPopularVideo } from "./store/store";
+import axios from "axios";
 
 const mockData = [
   {
@@ -1497,32 +1500,46 @@ const mockData = [
     },
   },
 ];
-// redux로 mockData로 state에 저장하는 과정 이식하기
+const apiKey = process.env.REACT_APP_API_KEY;
 
 function App() {
-  const [list, setList] = useState(mockData);
+  const dispatch = useDispatch();
+
+  const popularData = [];
+
   useEffect(() => {
-    const tempList = [...list];
-    [...tempList].forEach((data) => {
-      data.like = 0;
-      data.dislike = 0;
-      data.subscribe = 0;
-    });
-    setList(tempList);
+    axios
+      .get(`https://youtube.googleapis.com/youtube/v3/videos?part=snippet&chart=mostPopular&maxResults=25&key=${"AIzaSyCgqThQwQoG8Rmexmh-3oZAKnxA8zckbig"}`)
+      .then((res) => {
+        console.log(res);
+        popularData.push(res.data.items);
+      })
+      .catch((error) => console.log("error", error))
+      .then((res) => {
+        console.log(...popularData);
+
+        const tempList = [...popularData];
+        [...tempList].forEach((data) => {
+          data.like = 0;
+          data.dislike = 0;
+          data.subscribe = 0;
+        });
+        console.log(...tempList);
+        dispatch(setPopularVideo(...tempList));
+      });
   }, []);
-  console.log(mockData, "mock");
 
   return (
     <div className="App">
       <NavHead />
       <BodyWrapper>
-        <NavSide list={list} />
+        <NavSide />
         <Routes>
-          <Route path="/" element={<Main mockData={list} />} />
-          <Route path="/video/:id" element={<Video list={list} setList={setList} />} />
-          <Route path="/subscribe" element={<Subscribe mockData={list} />} />
-          <Route path="/like" element={<Like mockData={list} />} />
-          <Route path="/dislike" element={<Dislike mockData={list} />} />
+          <Route path="/" element={<Main />} />
+          <Route path="/video/:id" element={<Video />} />
+          <Route path="/subscribe" element={<Subscribe />} />
+          <Route path="/like" element={<Like />} />
+          <Route path="/dislike" element={<Dislike />} />
         </Routes>
       </BodyWrapper>
     </div>
