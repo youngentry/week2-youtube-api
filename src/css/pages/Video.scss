@@ -1,10 +1,12 @@
 @import "../abstracts/mixins.scss";
 
 .video {
+  display: flex;
+  flex-direction: column;
   padding: 3rem;
-  width: 60%;
-  iframe {
-    margin-bottom: 1rem;
+  width: 68%;
+  .videoPlayer {
+    margin-bottom: 1.5rem;
   }
   .info {
     display: flex;

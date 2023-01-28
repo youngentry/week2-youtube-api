@@ -6,12 +6,12 @@ import Video from "./pages/Video";
 import Like from "./pages/Like";
 import Dislike from "./pages/Dislike";
 import Subscribe from "./pages/Subscribe";
-import { Route, Router, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import BodyWrapper from "./layout/BodyWrapper";
-import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
 import { setPopularVideo } from "./store/store";
-import axios from "axios";
+import { getGeneralMostPopularVideos } from "./YoutubeApi";
 
 const mockData = [
   {
@@ -1500,19 +1500,18 @@ const mockData = [
     },
   },
 ];
-const apiKey = process.env.REACT_APP_API_KEY;
 
 function App() {
   const dispatch = useDispatch();
 
+  // 최초에 메인 페이지 popularVideo 비동기로 불러오기
   useEffect(() => {
-    axios
-      .get(`https://youtube.googleapis.com/youtube/v3/videos?part=snippet&chart=mostPopular&maxResults=25&key=${apiKey}`)
-      .then((res) => {
-        dispatch(setPopularVideo([...res.data.items]));
-      })
-      .catch((error) => console.log("error", error));
-  }, []);
+    (async () => {
+      const mostPopularVideos = await getGeneralMostPopularVideos(20);
+      console.log(mostPopularVideos);
+      dispatch(setPopularVideo(mostPopularVideos));
+    })();
+  }, [dispatch]);
 
   return (
     <div className="App">
