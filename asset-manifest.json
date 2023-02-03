@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/week2-youtube-api/static/css/main.d97a5c8e.css",
-    "main.js": "/week2-youtube-api/static/js/main.695d1803.js",
+    "main.css": "/week2-youtube-api/static/css/main.a4641c7c.css",
+    "main.js": "/week2-youtube-api/static/js/main.f0c9f1dd.js",
     "index.html": "/week2-youtube-api/index.html",
-    "main.d97a5c8e.css.map": "/week2-youtube-api/static/css/main.d97a5c8e.css.map",
-    "main.695d1803.js.map": "/week2-youtube-api/static/js/main.695d1803.js.map"
+    "main.a4641c7c.css.map": "/week2-youtube-api/static/css/main.a4641c7c.css.map",
+    "main.f0c9f1dd.js.map": "/week2-youtube-api/static/js/main.f0c9f1dd.js.map"
   },
   "entrypoints": [
-    "static/css/main.d97a5c8e.css",
-    "static/js/main.695d1803.js"
+    "static/css/main.a4641c7c.css",
+    "static/js/main.f0c9f1dd.js"
   ]
 }
